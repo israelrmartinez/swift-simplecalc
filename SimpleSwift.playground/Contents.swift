@@ -59,7 +59,8 @@ func calculate(_ args: [String]) -> Int {
 }
 
 func calculate(_ arg: String) -> Int {
-    return -1
+    let strArray = arg.split{$0 == " "}.map(String.init)
+    return calculate(strArray)
 }
 
 // -------------------------------------------
