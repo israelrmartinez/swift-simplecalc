@@ -1,7 +1,61 @@
 print("Welcome to the UW Calculator Playground")
 
+// Taken from https://www.tutorialkart.com/swift-tutorial/swift-factorial/
+func factorial(n: Int) -> Int {
+    var result = 1
+    if(n > 0) {
+        for i in 1...n {
+            result *= i
+        }
+    }
+    return result
+}
+
 func calculate(_ args: [String]) -> Int {
-    return -1
+    if args.count > 1 {
+        if args[1] == "+" {
+            let first = Int(args[0]) ?? 0
+            let second = Int(args[2]) ?? 0
+            return (first + second)
+        } else if args[1] == "-" {
+            let first = Int(args[0]) ?? 0
+            let second = Int(args[2]) ?? 0
+            return (first - second)
+        } else if args[1] == "*" {
+            let first = Int(args[0]) ?? 0
+            let second = Int(args[2]) ?? 0
+            return (first * second)
+        } else if args[1] == "/" {
+            let first = Int(args[0]) ?? 0
+            let second = Int(args[2]) ?? 0
+            return (first / second)
+        } else if args[1] == "%" {
+            let first = Int(args[0]) ?? 0
+            let second = Int(args[2]) ?? 0
+            return (first % second)
+        }
+        let opr = args[args.count - 1]
+        if opr == "count" {
+            let num = Int(args[args.count - 2]) ?? 0
+            return num
+        }
+        if opr == "avg" {
+            var nums = [Int]()
+            var index : Int = 0
+            repeat {
+                let val = Int(args[index]) ?? 0
+                nums.append(val)
+                index += 1
+            } while index < args.count - 1
+            return nums.reduce(0, +) / nums.count
+        }
+        if opr == "fact" {
+            let num = Int(args[0]) ?? 0
+            return factorial(n: num)
+        }
+    }
+    
+    return 0
 }
 
 func calculate(_ arg: String) -> Int {
@@ -88,3 +142,4 @@ calculate(["2.0", "/", "2.0"]) == 1.0
 calculate(["2.0", "%", "2.0"]) == 0.0
 calculate("1.0 2.0 3.0 4.0 5.0 count") == 5
 */
+
